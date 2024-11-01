@@ -1,4 +1,4 @@
-// CPP0528 - DANH SACH THUC TAP - 1.cpp
+// CPP0529 - DANH SACH THUC TAP - 2.cpp
 #include <bits/stdc++.h>
 #include <iostream>
 #include <algorithm>
@@ -26,65 +26,62 @@ typedef vector<int> v32;
 
 typedef struct SinhVien {
 	int stt;
-	string msv, ten, lop, email;
-	string m;
+	string msv, ht, lop, email, dn;
 } SV;
 
-typedef struct Business {
-	string m;
-	vector<SV> TT;
-} Bus;
+typedef struct DoanhNghiep {
+	string dn;
+	vector<SV> tt;
+} DN;
 
-vector<Bus> DN;
+vector<DN> dsdn;
 
 int id = 1;
 void nhap(SV& sv) {
 	sv.stt = id++;
 	getline(cin, sv.msv);
-	getline(cin, sv.ten);
+	getline(cin, sv.ht);
 	getline(cin, sv.lop);
 	getline(cin, sv.email);
-	getline(cin, sv.m);
+	getline(cin, sv.dn);
 	int mark = 1;
-	f(i, 0, DN.size()) {
-		if(sv.m == DN[i].m) {
-			DN[i].TT.pb(sv);
+	for(auto& it:dsdn) {
+		if(it.dn == sv.dn) {
 			mark = 0;
+			it.tt.pb(sv);
 			break;
 		}
 	}
 	if(mark) {
-		Bus tmp;
-		tmp.m = sv.m;
-		tmp.TT.pb(sv);
-		DN.pb(tmp);
+		DN tmp;
+		tmp.dn = sv.dn;
+		tmp.tt.pb(sv);
+		dsdn.pb(tmp);
 	}
 }
 
 bool cmp(const SV& a, const SV& b) {
-	return a.ten < b.ten;
+	return a.msv < b.msv;
 }
 
-
 void xuat(SV sv) {
-	cout << sv.stt << " " << sv.msv << " " << sv.ten << " " << sv.lop << " " << sv.email << " " << sv.m << ln;
+	cout << sv.stt << " " << sv.msv << " " << sv.ht << " " << sv.lop << " " << sv.email << " " << sv.dn << ln;
 }
 
 void solve()
 {
-	int N; cin >> N;
+	int n; cin >> n;
 	cin.ignore();
-	SV DS[N];
-	f(i, 0, N) nhap(DS[i]);
+	SV dssv[n];
+	f(i, 0, n) nhap(dssv[i]);
 	int t; cin >> t;
 	f(i, 0, t) {
-		string e; cin >> e;
-		auto it = find_if(DN.begin(), DN.end(), [e](const Bus& b){return b.m == e;});
-		sort(all((*it).TT), cmp);
-		for(auto itr:(*it).TT) xuat(itr);
+		string tenDN; cin >> tenDN;
+		auto it = find_if(all(dsdn), [tenDN](const DN& x){return x.dn == tenDN;});
+		sort(all((*it).tt), cmp);
+		for(auto sv:(*it).tt) xuat(sv);
 	}
 }
-
 
 int main()
 {
