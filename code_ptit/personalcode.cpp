@@ -54,15 +54,13 @@ public:
 		tk.rt = c*sc;
 		return is;
 	}
-	// Ten Phi: moi_khoa  ngay  thang
-	// Base_cost:
-	// Bunddle:
-	// Loi_nhuan:
+	// Ten Phi:       moi_khoa    ngay      thang
+	//     Loi_nhuan: 
 	friend ostream& operator<<(ostream& os, const TK& tk) {
-		os << tk.t  << " "  << tk.kd << " "  << tk.km << ln;
-		os << tk.rc << " \t" << tk.rd << " \t" << tk.rm << " \t" << tk.rt << ln;
-		os << tk.pc << " \t" << tk.pd << " \t" << tk.pm << " \t" << tk.pt << ln;
-		os << tk.lc << " \t" << tk.ld << " \t" << tk.lm << " \t" << tk.lt << ln;
+		os << tk.t << " " << tk.kd << " " << tk.km << ln;
+		os << tk.rc << "  " << tk.rd << "  " << tk.rm << " \t" << tk.rt << ln;
+		os << tk.pc << "  " << tk.pd << "  " << tk.pm << " \t" << tk.pt << ln;
+		os << tk.lc << "  " << tk.ld << "  " << tk.lm << " \t" << tk.lt << ln;
 		return os;
 	}
 };

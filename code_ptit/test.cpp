@@ -1,83 +1,78 @@
-// CPP0531 - BON DIEM TREN MAT PHANG.cpp
 #include <bits/stdc++.h>
-#include <iostream>
-#include <algorithm>
-#include <cmath>
-#include <string>
-#include <vector>
-#include <iomanip>
-
 using namespace std;
+int IDKH = 1, IDMH = 1, IDHD = 1;
+class KhachHang; class MatHang; class HoaDon;
+map<string, KhachHang>KH;
+map<string, MatHang>MH;
+class KhachHang{
+private:
+	string id, ten, gt, ns, dc;
+public:
+	friend class HoaDon;
+	friend istream& operator >> (istream&in, KhachHang &a){
+		if (IDKH < 10) a.id = "KH00" + to_string(IDKH++);
+		else a.id = "KH0" + to_string(IDKH++);
+		getline(in >> ws, a.ten);
+		getline(in, a.gt);
+		getline(in, a.ns);
+		getline(in, a.dc);
+		KH[a.id] = a;
+		return in;
+	}
+	string getTenKH(){return ten; }
+	string getDiaChi(){ return dc; }
+};
+class MatHang{
+private:
+	string id, ten, donvi;
+	int giaban, giamua;
+public:
+	friend class HoaDon;
+	friend istream& operator >> (istream&in, MatHang &a){
+		if (IDMH < 10) a.id = "MH00" + to_string(IDMH++);
+		else a.id = "MH0" + to_string(IDMH++);
+		getline(in >> ws, a.ten); getline(in, a.donvi);
+		in >> a.giamua >> a.giaban;
+		MH[a.id] = a;
+		return in;
+	}
+	int getGiaBan(){ return giaban; }
+	int getGiaMua(){ return giamua; }
+	string getTenMH(){ return ten; }
+	string getDonVi(){ return donvi; }
+};
+class HoaDon{
+private:
+	string makh, mamh, id;
+	int soluong;
+public:
+	friend istream& operator >>(istream&in, HoaDon &a){
+		if (IDHD < 10) a.id = "HD00" + to_string(IDHD++);
+		else a.id = "HD0" + to_string(IDHD++);
+		in >> a.makh >> a.mamh >> a.soluong;
+		return in;
+	}
+	friend ostream& operator << (ostream&out, HoaDon a){
+		out << a.id << " ";
+		out << KH[a.makh].getTenKH() << " " << KH[a.makh].getDiaChi() << " ";
+		out << MH[a.mamh].getTenMH() << " " << MH[a.mamh].getDonVi() << " " << MH[a.mamh].getGiaMua() << " " << MH[a.mamh].getGiaBan() << " "; 
+		out << a.soluong << " " << 1ll * MH[a.mamh].getGiaBan() * a.soluong << endl; 
+		return out; 
+	} 
+}; 
 
-typedef long long ll;
-typedef long double ld;
-typedef pair<int,int> p32;
-typedef vector<ll> v64;
-typedef vector<int> v32;
-#define fast_cin() ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
-#define f(i,s,e) for(int i = s; i < e; i++)
-#define rf(i,s,e) for(int i = s; i >= e; i--)
-#define ln "\n"
-#define INF 2e18
-#define all(x) (x).begin(), (x).end()
-#define mp make_pair
-#define pb push_back
-#define fi first
-#define se second
-
-typedef struct Point {
-	int x, y, z;
-	friend istream& operator>>(istream& input, Point& P) {
-		input >> P.x >> P.y >> P.z;
-		return input;
-	}
-} P;
-
-int det(int a, int b, int c, int d) {
-	return a*d-b*c;
-}
-typedef struct vPoint {
-	int x, y, z;
-	vPoint() {
-		x = 0; y = 0; z = 0;
-	}
-	vPoint(const Point& A, const Point& B) {
-		x = B.x - A.x;
-		y = B.y - A.y;
-		z = B.z - A.z;
-	}
-	friend ostream& operator<<(ostream& output, const vPoint& VP) {
-		output << "(" << VP.x << "," << VP.y << "," << VP.z << ")";
-		return output;
-	}
-	vPoint cross(const vPoint& v) {
-		vPoint res;
-		res.x = det(this->y, this->z, v.y, v.z);
-		res.y = det(this->z, this->x, v.z, v.x);
-		res.z = det(this->x, this->y, v.x, v.y);
-		return res;
-	}
-	int dot(const vPoint& v) {
-		return this->x*v.x + this->y*v.y + this->z*v.z;
-	}	
-} vP;
-
-void solve()
-{
-	P A, B, C, D;
-	cin >> A >> B >> C >> D;
-	vP AB(A, B), AC(A, C), AD(A, D);
-	if((AB.cross(AC)).dot(AD) == 0) cout << "YES" << ln;
-	else cout << "NO" << ln;
-}
-
-int main()
-{
-	fast_cin();
-	int t;
-	cin >> t;
-	for(int it=1; it<=t; it++) {
-		solve();
-	}
-	return 0;
+int main(){
+    KhachHang dskh[25];
+    MatHang dsmh[45];
+    HoaDon dshd[105];
+    int N,M,K,i;
+    cin >> N;
+    for(i=0;i<N;i++) cin >> dskh[i];
+    cin >> M;
+    for(i=0;i<M;i++) cin >> dsmh[i];
+    cin >> K;
+    for(i=0;i<K;i++) cin >> dshd[i];
+    
+    for(i=0;i<K;i++) cout << dshd[i];
+    return 0;
 }
