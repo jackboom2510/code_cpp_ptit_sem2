@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <fstream>
 #include <iostream>
 #include <algorithm>
 #include <cmath>
@@ -130,6 +131,10 @@ void solve() {
 	f(i, 0, M) {
 		if(isSinhVien(dssv[i], 7)) cout << dssv[i];
 	}
+}
+
+void solve() {
+	fstream("")
 }
 
 int main()
