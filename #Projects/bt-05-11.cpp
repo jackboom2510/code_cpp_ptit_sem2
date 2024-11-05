@@ -50,6 +50,7 @@ void output(vector<NhanVien> &dsNhanVien, const string &ten) {
 		}
 		file.close();
 }
+}
 
 void tinhVaInTongLuong(const vector<NhanVien> &dsNhanVien) {
 	for (const auto &nv : dsNhanVien) {
