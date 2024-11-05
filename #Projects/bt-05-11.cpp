@@ -30,7 +30,7 @@ void nhapThongTinNhanVien(vector<NhanVien> &dsNhanVien) {
 void input(vector<NhanVien> &dsNhanVien, string &ten) {
 	ofstream file(ten);
 	if (file.is_open()) {
-		for (const auto &nv : dsNhanVien) {
+		for (auto &nv : dsNhanVien) {
 			file << nv.maSo << "\n" << nv.hoTen << "\n"
 				 << nv.heSoLuong << "\n" << nv.luongCoBan << "\n" << nv.phuCap << "\n";
 		}
