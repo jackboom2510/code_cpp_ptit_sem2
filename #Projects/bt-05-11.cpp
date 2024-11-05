@@ -27,7 +27,7 @@ void nhapThongTinNhanVien(vector<NhanVien> &dsNhanVien) {
 	}
 }
 
-void input(const vector<NhanVien> &dsNhanVien, const string &ten) {
+void input(vector<NhanVien> &dsNhanVien, string &ten) {
 	ofstream file(ten);
 	if (file.is_open()) {
 		for (const auto &nv : dsNhanVien) {
@@ -38,7 +38,7 @@ void input(const vector<NhanVien> &dsNhanVien, const string &ten) {
 	}
 }
 
-void output(vector<NhanVien> &dsNhanVien, const string &ten) {
+void output(vector<NhanVien> &dsNhanVien, string &ten) {
 	ifstream file(ten);
 	if (file.is_open()) {
 		NhanVien nv;
@@ -52,7 +52,7 @@ void output(vector<NhanVien> &dsNhanVien, const string &ten) {
 }
 }
 
-void tinhVaInTongLuong(const vector<NhanVien> &dsNhanVien) {
+void tinhToan(vector<NhanVien> &dsNhanVien) {
 	for (const auto &nv : dsNhanVien) {
 		float tongLuong = nv.luongCoBan * nv.heSoLuong + nv.phuCap;
 		cout << "Ma so: " << nv.maSo << ", Ho ten: " << nv.hoTen 
@@ -67,7 +67,7 @@ int main() {
 	input(dsNhanVien, ten);
 	dsNhanVien.clear();
 	output(dsNhanVien, ten);
-	tinhVaInTongLuong(dsNhanVien);
+	tinhToan(dsNhanVien);
 
 	return 0;
 }
