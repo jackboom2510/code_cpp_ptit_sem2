@@ -1,3 +1,4 @@
+// CPP0801 - SAO CHÉP TỆP TIN.cpp
 #include <bits/stdc++.h>
 #include <iostream>
 #include <algorithm>
@@ -5,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <iomanip>
+#include <fstream>
 
 using namespace std;
 
@@ -25,43 +27,21 @@ typedef vector<int> v32;
 #define fi first
 #define se second
 
-map<string, int> myMap = {{"one", 1}, {"two", 2}, {"three", 3}};
-string bf = "";
-
-class Data {
-public:
-	string name;
-	vector<string> data;
-public:
-	friend istream& operator>>(istream& is, Data& dt) {
-		if(bf.size() == 0) is >> dt.name;
-		else {
-			dt.name = bf;
-			bf = "";
+void copy(string src, string des) {
+	ifstream input(src);
+	ofstream output(des);
+	if(input && output) {
+		string line;
+		while(getline(input, line)) {
+			output << line << ln;
 		}
-		while(true) {
-			string m; cin >> m;
-			if(myMap.find(m) == myMap.end()) {
-				bf = m;
-				break;
-			}
-			dt.data.pb(m);
-		}
-		return is;
 	}
-	friend ostream& operator<<(ostream& os, const Data& dt) {
-		os << dt.name << "{ ";
-		for(auto it:dt.data) os << it << " ";
-		os << "}" << ln;
-		return os;
-	}
-};
+	input.close(); output.close();
+}
 
 void solve()
 {
-	Data DT[3];
-	f(i, 0, 3) cin >> DT[i];
-	f(i, 0, 3) cout << DT[i];
+	copy("PTIT.in", "PTIT.out");
 }
 
 int main()

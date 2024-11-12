@@ -1,3 +1,4 @@
+// Liet ke danh sach sinh vien GPA >= 7
 #include <bits/stdc++.h>
 #include <fstream>
 #include <iostream>
