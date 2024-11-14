@@ -1,0 +1,11 @@
+₫15.000 - ₫20.000 | ₫15.000
+if(prop("Price range").contains("-"),
+	toNumber(
+		prop("Price range").split("-").at().split("₫").last().split(".").first() +
+		prop("Price range").split("-").at().split("₫").last().split(".").last()
+	),
+	toNumber(
+		prop("Price range").split("₫").last().split(".").first() +
+		prop("Price range").split("₫").last().split(".").last()
+	)
+)
