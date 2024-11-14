@@ -38,6 +38,7 @@ int isPrime(ll n) {
 	return 1;
 }
 
+
 int genReduceNumber() {
 	int num = 0;
 	for (int i = 1; i <= n; i++) {
@@ -83,6 +84,7 @@ int isSTG(ll n_) {
 	}
 	return 1;
 }
+
 P
 int isSTM(ll n) {
 	if(isPrime(n) && isSTG(n)) return 1;
